@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814b17448ed9ba441b5c2a2f6af0e739, type: 3}
+  m_Name: VirusDiseaseDatabase
+  m_EditorClassIdentifier: 
+  allVirusDiseases:
+  - {fileID: 11400000, guid: 484e8ce20d79d2542ab695c8a56f1114, type: 2}
+  - {fileID: 11400000, guid: 1c67309a25c3998418597da1e29e5ccf, type: 2}
+  - {fileID: 11400000, guid: 1d1277e4f9d15ec4bb3a5bad111a30aa, type: 2}
+  - {fileID: 11400000, guid: 2e0173950d4081a4da11496f2306e388, type: 2}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dfaf03b9c8a5d46b61b16701fecacf, type: 3}
+  m_Name: TestProduct
+  m_EditorClassIdentifier: 
+  ingredients:
+  - item: {fileID: 11400000, guid: 8ea76c1f56678bd40a41b2c47f23abce, type: 2}
+    slotIndex: 23
+  - item: {fileID: 11400000, guid: f08151bf444a4874c9f516e2d516e5e8, type: 2}
+    slotIndex: 24
+  resultItem: {fileID: 11400000, guid: 309b7e60a6bf6cd4086831ec4283515c, type: 2}
+  productPrefab: {fileID: 7151090899417442288, guid: 8f7bf574349fa274ca1899b3cf713fd3,
+    type: 3}
