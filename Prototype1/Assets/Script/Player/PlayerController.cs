@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Canvas InvestigateText;
     public GameObject Hotbar;
     public GameObject Book;
+    public UIManager uIManager;
 
     private bool iswalking;
     private Vector3 lastinteractDir;
@@ -321,8 +322,9 @@ public class PlayerController : MonoBehaviour
         SetCanMove(true);
         InvestigateText.gameObject.SetActive(false);
         Hotbar.gameObject.SetActive(true);
-        Book.gameObject.SetActive(true);    
-    
+        Book.gameObject.SetActive(true);
+        uIManager.ShowAnswerCanvas.gameObject.SetActive(false);
+
     }
 }
 

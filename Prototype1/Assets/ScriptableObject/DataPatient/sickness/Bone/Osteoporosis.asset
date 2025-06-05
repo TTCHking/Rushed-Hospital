@@ -15,3 +15,13 @@ MonoBehaviour:
   diseaseName: osteoporosis
   diseaseType: 0
   description: "-\u0E1B\u0E27\u0E14\u0E2B\u0E25\u0E31\u0E07\u0E40\u0E23\u0E37\u0E49\u0E2D\u0E23\u0E31\u0E07\r\n-\u0E01\u0E23\u0E30\u0E14\u0E39\u0E01\u0E2A\u0E31\u0E19\u0E2B\u0E25\u0E31\u0E07\u0E17\u0E23\u0E38\u0E14\u0E15\u0E31\u0E27\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E39\u0E07\u0E25\u0E14\u0E25\u0E07\r\n-\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E44\u0E2B\u0E27\u0E25\u0E33\u0E1A\u0E32\u0E01\r"
+  diseaseIcon: {fileID: 21300000, guid: 6ff25a5003b5f454489fca1cd9d28988, type: 3}
+  Asking: {fileID: 0}
+  CorrectMedicine: {fileID: 11400000, guid: 766b20967ff4f0241a66470d9a9029bd, type: 2}
+  RBCStatus: 1
+  WBCStatus: 1
+  NeutrophilStatus: 1
+  EosinophilStatus: 1
+  BasophilStatus: 1
+  LymphocyteStatus: 1
+  MonocyteStatus: 1

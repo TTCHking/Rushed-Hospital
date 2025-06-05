@@ -19,8 +19,26 @@ public class InvestigateRoom : Room
     public Button question2Button;
     public Button question3Button;
     public TextMeshProUGUI answerText;
+    public bool hasaleadyinvestigate = false;
 
     private AskingDatabase currentAsking;
+
+    public UIManager uIManager;
+    public PatientInteract patientInteract;
+    public Transform Player;
+    public InvestigateRoom investigateRoom;
+
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI ageText;
+    public TextMeshProUGUI genderText;
+    public TextMeshProUGUI diseaseText;
+    public TextMeshProUGUI bloodText;
+    public TextMeshProUGUI pregnantText;
+    public TextMeshProUGUI questionAnswerText;
+    public TextMeshProUGUI bloodTestText;
+    public Sprite XrayTested;
+    public Image xrayImageUI;
+
 
     public override void EnterRoom(PatientData data)
     {
@@ -29,6 +47,82 @@ public class InvestigateRoom : Room
         questionCount = 0;
         askedQuestions.Clear();
 
+        if (hasaleadyinvestigate) {
+            if (patientInteract.warpTarget != null)
+            {
+                uIManager.ExitShowPatientOption();
+                Player.position = patientInteract.warpTarget.position;
+                Player.rotation = patientInteract.warpTarget.rotation;
+                patientInteract.Hotbar.gameObject.SetActive(false);
+                patientInteract.Book.gameObject.SetActive(false);
+
+                PlayerController controller = data.GetComponent<PlayerController>();
+                if (controller != null)
+                {
+                    controller.SetCanMove(false);
+                }
+
+                if (patientInteract.investigateVCam != null)
+                {
+                    patientInteract.investigateVCam.Priority = 20;
+                }
+                uIManager.ShowAnswerCanvas.gameObject.SetActive(true);
+                uIManager.infoText.gameObject.SetActive(true);
+
+                if (data == null) return;
+
+                nameText.text = data.patientName;
+                ageText.text = data.age.ToString();
+                genderText.text = data.gender;
+                diseaseText.text = data.disease != null ? data.disease.diseaseName : "";
+                bloodText.text = data.bloodType;
+                pregnantText.text = data.isPregnant ? "True" : "False";
+
+                if (investigateRoom.hasaleadyinvestigate) {
+                    questionAnswerText.text = "";
+                    var answers = data.GetAllAnswers();
+                    foreach (var entry in answers)
+                    {
+                        questionAnswerText.text += $"{entry.Value}\n";
+                    }
+                }
+
+                if (data.hasBloodTested) {
+                    bloodTestText.text =
+                    $"RBC: {data.rbcStatusText}\n" +
+                    $"WBC: {data.wbcStatusText}\n" +
+                    $"Neutrophil: {data.neutrophilStatusText}\n" +
+                    $"Eosinophil: {data.eosinophilStatusText}\n" +
+                    $"Basophil: {data.basophilStatusText}\n" +
+                    $"Lymphocyte: {data.lymphocyteStatusText}\n" +
+                    $"Monocyte: {data.monocyteStatusText}";
+                }
+
+                xrayImageUI.sprite = XrayTested;
+                xrayImageUI.enabled = true;
+                if (data.hasXrayTested)
+                {
+                    if (data.disease != null && data.disease.diseaseIcon != null)
+                    {
+                        XrayTested = data.disease.diseaseIcon;  // ???? Sprite ??????????? Sprite
+
+                        // ?????????? Image component ???? xrayImageUI
+                        xrayImageUI.sprite = XrayTested;
+                        xrayImageUI.enabled = true;
+                    }
+                    else
+                    {
+                        // ???? UI ??????????? Sprite
+                        xrayImageUI.enabled = false;
+                        XrayTested = null;
+                    }
+                }
+
+            }
+        }
+
+
+
         if (playerController == null)
         {
             playerController = FindObjectOfType<PlayerController>();
@@ -36,7 +130,7 @@ public class InvestigateRoom : Room
 
         Debug.Log("Diagnosing Patient: " + data.patientName);
 
-        // ??? DiseaseData ??? AskingDatabase
+        //????????? DiseaseData ???????????????? AskingDatabase ??????????????????????????????????????? AskingDatabase
         DiseaseData diseaseData = data.GetDiseaseData();
         if (diseaseData != null && diseaseData.Asking is AskingDatabase askingData)
         {
@@ -49,6 +143,7 @@ public class InvestigateRoom : Room
         }
     }
 
+    //??????????????????? Set ????????????????
     public void SetupQuestionButtons(AskingDatabase askingData)
     {
         question1Button.onClick.RemoveAllListeners();
@@ -60,6 +155,7 @@ public class InvestigateRoom : Room
         question3Button.onClick.AddListener(() => AskSpecificQuestion(3));
     }
 
+    //???????????????????????????????????
     private void AskSpecificQuestion(int questionIndex)
     {
         if (questionCount >= 3 || askedQuestions.Contains(questionIndex)) return;
@@ -81,17 +177,21 @@ public class InvestigateRoom : Room
                 break;
         }
 
+        //Patient???????????????????????????????????
         currentPatient.SaveAnswer(questionIndex, answer);
 
+        //?????Text????????
         answerText.text = $"\n{answer}";
 
-       
 
-        if (questionCount >= 4)
+        //?????????????????????? 
+        if (questionCount >= 3)
         {
-            Debug.Log("?????? 3 ?????????");
+            Debug.Log("Aleady 3 Answer");
             PatientOption.gameObject.SetActive(true);
             QuestionText.gameObject.SetActive(false);
+            hasaleadyinvestigate = true;
+
 
             if (playerController != null)
             {
@@ -99,14 +199,35 @@ public class InvestigateRoom : Room
             }
             else
             {
-                Debug.LogError("playerController ????????? assign!");
+                Debug.LogError("PlayerController null");
             }
         }
     }
 
+    //????????????????????
     private string GetRandomAnswer(string[] answers)
     {
         if (answers == null || answers.Length == 0) return "???????????";
         return answers[Random.Range(0, answers.Length)];
+    }
+
+    public void CheckDisease(DiseaseData correctDisease)
+    {
+        if (currentPatient == null || currentPatient.disease == null)
+        {
+            Debug.LogWarning("No patient or disease data to check.");
+            return;
+        }
+
+        if (currentPatient.disease == correctDisease)
+        {
+            Debug.Log("Correct Diagnosis");
+            // ????????????????????? ????????????
+        }
+        else
+        {
+            Debug.Log("Wrong Diagnosis");
+            // ????????????????????
+        }
     }
 }

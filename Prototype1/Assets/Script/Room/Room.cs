@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
     public virtual void EnterRoom(PatientData patient)
     {
         Debug.Log(patient.patientName + " has entered " + roomName);
-        // เพิ่ม Logic เฉพาะของห้อง เช่น ตรวจวัดความดัน หรือการตอบคำถาม
+        
        
     }
 

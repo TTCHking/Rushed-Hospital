@@ -11,6 +11,7 @@ TagManager:
   - Blood-Test
   - Investigate-Room
   - X-ray
+  - WaitingRoom
   layers:
   - Default
   - TransparentFX

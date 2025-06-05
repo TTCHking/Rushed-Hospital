@@ -6,6 +6,7 @@ public class WaitingRoom : Room
 {
     PatientData currentPatient;
     private int questionCount = 0;
+    PatientMovement patientMovement;
 
     public override void EnterRoom(PatientData patient)
     {
@@ -13,7 +14,12 @@ public class WaitingRoom : Room
         currentPatient = patient;
         questionCount = 0;
 
-        //Debug.Log("WaitingRoom Patient: " + patient.patientName);
+        patientMovement = patient.GetComponent<PatientMovement>();
+
+        if (patientMovement != null)
+        {
+            patientMovement.StartCoroutine(patientMovement.MoveRandomly());
+        }
 
     }
 

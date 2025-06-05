@@ -13,5 +13,11 @@ public class AskingDatabase : ScriptableObject
 
     [Header("Do you have any history of injuruies or accident relate to this?")]
     public string[] answerofquestion3;
+
+
+
+
+
+
 }
     

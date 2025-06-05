@@ -17,8 +17,9 @@ public class Phone : MonoBehaviour, IInteractable
     private Object @object;
 
     public Canvas canvas;
-    public int Token;
-    public TextMeshProUGUI Token_Text;
+
+    public UIManager manager;
+   
 
     
     public void Interaction(GameObject interactor)
@@ -31,8 +32,7 @@ public class Phone : MonoBehaviour, IInteractable
     private void Start()
     {
         canvas.gameObject.SetActive(false);
-        Token = 2000;
-        Token_Text.text = Token.ToString();
+       
     }
 
     private void Show() 
@@ -46,25 +46,16 @@ public class Phone : MonoBehaviour, IInteractable
     }
 
 
-    private void Update()
-    {
-        if (testing && Input.GetKeyDown(KeyCode.G)) {
-            if (@object != null) {
-                @object.SetClearSpawnPoint(secondphone);
-            }
-        }
-    }
-
     public Transform GetObjectFollowTransform() { 
         return spawnPoint;
     }
 
     public void BuyNourP()
     {
-        if (Token >= 350)
+        if (manager.Token >= 350)
         {
-            Token -= 350;
-            Token_Text.text = Token.ToString();
+            manager.Token -= 350;
+            manager.Token_Text.text = manager.Token.ToString();
             SpawnNourP();
         }
         else {
@@ -83,10 +74,10 @@ public class Phone : MonoBehaviour, IInteractable
 
     public void BuyNourT()
     {
-        if (Token >= 200)
-        {
-            Token -= 200;
-            Token_Text.text = Token.ToString();
+        if (manager.Token >= 200)
+        {   
+            manager.Token -= 200;
+            manager.Token_Text.text = manager.Token.ToString();
             SpawnNourT();
         }
         else

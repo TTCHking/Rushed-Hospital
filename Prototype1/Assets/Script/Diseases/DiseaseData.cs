@@ -10,6 +10,7 @@ public class DiseaseData : ScriptableObject
     [TextArea] public string description;
     public Sprite diseaseIcon;
     public ScriptableObject Asking;
+    public ScriptableObject CorrectMedicine;
 
     public BloodStatus RBCStatus;
     public BloodStatus WBCStatus;
@@ -21,6 +22,7 @@ public class DiseaseData : ScriptableObject
 }
 public enum BloodStatus
 {
+    Unknown, //????? 
     N, // Normal
     H, // High
     L  // Low

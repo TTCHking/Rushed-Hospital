@@ -7,8 +7,8 @@ public class HighShearMixer : MonoBehaviour, IInteractable
     public CraftingRecipeSO recipeSO;
     public Transform spawnProduct;
     public List<CraftingRecipeSO> recipes;
-    public int[] craftingSlotIndices; // ???? [0,1,2]
-    public int outputSlotIndex; // ???? output ???? index = 4
+    public int[] craftingSlotIndices; 
+    public int outputSlotIndex; 
 
     public InventoryManager inventoryManager;
 
@@ -31,11 +31,11 @@ public class HighShearMixer : MonoBehaviour, IInteractable
 
     public void CheckRecipes()
     {
-        foreach (var recipe in recipes)  // ?????????????????? recipes
+        foreach (var recipe in recipes) 
         {
             bool match = true;
 
-            // 1. ?????????????????????
+            
             foreach (var ingredient in recipe.ingredients)
             {
                 var invObj = inventoryManager.GetObjectAt(ingredient.slotIndex);
@@ -48,7 +48,7 @@ public class HighShearMixer : MonoBehaviour, IInteractable
 
             if (match)
             {
-                // ??????????? output ???????????
+               
                 var outputObj = inventoryManager.GetObjectAt(outputSlotIndex);
                 if (outputObj != null)
                 {
@@ -56,15 +56,12 @@ public class HighShearMixer : MonoBehaviour, IInteractable
                     return;
                 }
 
-                // ????????????????????
+               
                 foreach (var ingredient in recipe.ingredients)
                 {
                     inventoryManager.RemoveItemAt(ingredient.slotIndex);
                 }
 
-                // ???????????????????????? output
-               
-                // ????? prefab ???????????????
                 if (recipe.productPrefab != null)
                 {
                     Vector3 spawnCraft = spawnProduct != null ? spawnProduct.position : transform.position;
@@ -72,7 +69,7 @@ public class HighShearMixer : MonoBehaviour, IInteractable
                 }
 
                 Debug.Log("Crafted: " + recipe.resultItem.name);
-                return;  // ????????????????????????????????????
+                return;  
             }
         }
 

@@ -144,7 +144,7 @@ public class PatientSpawn : MonoBehaviour
         data.isPregnant = isPregnant;
         data.bloodType = bloodType;
         data.disease = disease;
-
+        data.UpdateBloodStatusTexts();
 
         Debug.Log($"ชื่อ: {patientName} | อายุ: {randomAge} ({ageGroup}) | เพศ: {gender} | โรค: {diseaseName} | ตั้งครรภ์: {isPregnant} | หมู่เลือด: {bloodType}");
     }
@@ -167,14 +167,14 @@ public class PatientSpawn : MonoBehaviour
                 if (diseaseCategoryDatabase.boneDiseaseDatabase != null)
                     diseaseList = diseaseCategoryDatabase.boneDiseaseDatabase.allBoneDiseases;
                 break;
-          //  case 1:
-               // if (diseaseCategoryDatabase.virusDiseaseDatabase != null)
-               //     diseaseList = diseaseCategoryDatabase.virusDiseaseDatabase.allVirusDiseases;
-            //    break;
-         //   case 2:
-            //    if (diseaseCategoryDatabase.parasiteDiseaseDatabase != null)
-                //    diseaseList = diseaseCategoryDatabase.parasiteDiseaseDatabase.allParasiteDiseases;
-             //   break;
+            case 1:
+                if (diseaseCategoryDatabase.virusDiseaseDatabase != null)
+                   diseaseList = diseaseCategoryDatabase.virusDiseaseDatabase.allVirusDiseases;
+                break;
+            case 2:
+               if (diseaseCategoryDatabase.parasiteDiseaseDatabase != null)
+                   diseaseList = diseaseCategoryDatabase.parasiteDiseaseDatabase.allParasiteDiseases;
+                break;
 
         }
 

@@ -51,7 +51,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot != null)
             {
                 Destroy(itemInSlot.gameObject);
-                Debug.Log("?????????? UI: " + index);
+                Debug.Log("take Item out from slot  " + index);
             }
 
             // ?? object ????????? Dictionary

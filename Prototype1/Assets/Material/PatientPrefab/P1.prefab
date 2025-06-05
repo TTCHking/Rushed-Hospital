@@ -305,6 +305,17 @@ MonoBehaviour:
   isPregnant: 0
   bloodType: 
   disease: {fileID: 0}
+  correctMedicine: {fileID: 0}
+  rbcStatusText: 
+  wbcStatusText: 
+  neutrophilStatusText: 
+  eosinophilStatusText: 
+  basophilStatusText: 
+  lymphocyteStatusText: 
+  monocyteStatusText: 
+  hasBloodTested: 0
+  hasXrayTested: 0
+  xrayImage: {fileID: 0}
 --- !u!114 &-1509699952543585719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,15 +328,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab07040df7be74349919fc09038642d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 15
   isEmergency: 0
-  rooms:
-  - {fileID: 5809618388222530200, guid: 0531aa2f1e8a4564b8b8fc34f083048f, type: 3}
-  - {fileID: 6798553287337007472, guid: e0d1099f02fa4fe4dbf35a56d49b0087, type: 3}
-  - {fileID: 7447113507815764229, guid: 85f38326e1051674fb67a9e5e4f05d81, type: 3}
-  - {fileID: 6746680557719831440, guid: f6f73ef8123ae61409ee33d99745450b, type: 3}
   medicineOrderList: []
   maxPatience: 0
+  patientHasDied: 0
 --- !u!114 &4400744815259775163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,10 +376,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  startEnduranceProgress: 10
-  EnduranceProgressCount: 0
+  startEnduranceProgress: 120
+  EnduranceProgressCount: 4.9955516
+  EnduranceProgressHealing: 5
   isStartEnduranceProgress: 0
   EnduranceProgressUI: {fileID: 8391472187017948690}
+  selectedPatient: {fileID: -1509699952543585719}
+  hasDeath: 0
+  manager: {fileID: 0}
 --- !u!1 &4107170461368157834
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +454,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.99911034
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
